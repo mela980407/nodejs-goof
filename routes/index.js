@@ -188,8 +188,7 @@ exports.create = function (req, res, next) {
 };
 
 exports.destroy = function (req, res, next) {
-  const {userQuery} = req.params.id;
-  Todo.findById(String(userQuery), function (err, todo) {
+  Todo.find(String(userQuery), function (err, todo) {
 
     try {
       todo.remove(function (err, todo) {
@@ -217,7 +216,7 @@ exports.edit = function (req, res, next) {
 };
 
 exports.update = function (req, res, next) {
-  Todo.findById(String(req.params.id), function (err, todo) {
+  Todo.find(String(req.params.id), function (err, todo) {
 
     todo.content = req.body.content;
     todo.updated_at = Date.now();
