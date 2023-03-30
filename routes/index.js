@@ -188,7 +188,7 @@ exports.create = function (req, res, next) {
 };
 
 exports.destroy = function (req, res, next) {
-  Todo.find(String(userQuery), function (err, todo) {
+  Todo.find(decodeURIComponent(String(req.params.id)), function (err, todo) {
 
     try {
       todo.remove(function (err, todo) {
@@ -217,7 +217,7 @@ exports.edit = function (req, res, next) {
 
 exports.update = function (req, res, next) {
 	
-  Todo.find(req.params.id.toString(), function (err, todo) {
+  Todo.find(decodeURIComponent(String(req.params.id)), function (err, todo) {
 try {
     todo.content = req.body.content.toString();
     todo.updated_at = Date.now();
