@@ -216,9 +216,9 @@ exports.edit = function (req, res, next) {
 };
 
 exports.update = function (req, res, next) {
-  Todo.find(String(req.params.id), function (err, todo) {
+  Todo.find(req.params.id.toString(), function (err, todo) {
 
-    todo.content = String(req.body.content);
+    todo.content = req.body.content.toString();
     todo.updated_at = Date.now();
     todo.save(function (err, todo, count) {
       if (err) return next(err);
