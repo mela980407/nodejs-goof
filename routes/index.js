@@ -29,7 +29,7 @@ exports.index = function (req, res, next) {
       res.render('index', {
         title: 'Patch TODO List',
         subhead: 'Vulnerabilities at their best',
-        todos: todos,
+        todos: todos, 
       });
     });
 };
@@ -216,6 +216,7 @@ exports.edit = function (req, res, next) {
 };
 
 exports.update = function (req, res, next) {
+	if(Number(req.params.id)){
   Todo.find(req.params.id.toString(), function (err, todo) {
 
     todo.content = req.body.content.toString();
@@ -226,6 +227,7 @@ exports.update = function (req, res, next) {
       res.redirect('/');
     });
   });
+}
 };
 
 // ** express turns the cookie key to lowercase **
