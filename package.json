@@ -34,7 +34,7 @@
     "lodash": "4.17.2",
     "marked": "0.3.18",
     "method-override": "latest",
-    "moment": "2.29.2",
+    "moment": "2.29.4",
     "mongodb": "^3.5.9",
     "mquery": "3.2.5",
     "morgan": "latest",
