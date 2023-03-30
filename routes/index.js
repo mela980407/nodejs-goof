@@ -216,20 +216,16 @@ exports.edit = function (req, res, next) {
 };
 
 exports.update = function (req, res, next) {
-  if (/\D/.test(req.params.id)) {
-    return res.status(401).send()
-  } else {
-    Todo.findById(req.params.id, function (err, todo) {
+  Todo.findById(Int(req.params.id), function (err, todo) {
 
-      todo.content = req.body.content;
-      todo.updated_at = Date.now();
-      todo.save(function (err, todo, count) {
-        if (err) return next(err);
+    todo.content = req.body.content;
+    todo.updated_at = Date.now();
+    todo.save(function (err, todo, count) {
+      if (err) return next(err);
 
-        res.redirect('/');
-      });
+      res.redirect('/');
     });
-  }
+  });
 };
 
 // ** express turns the cookie key to lowercase **
