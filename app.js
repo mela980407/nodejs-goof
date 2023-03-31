@@ -41,6 +41,7 @@ app.use(logger('dev'));
 app.use(methodOverride());
 app.use(session({
   secret: 'keyboard cat',
+  key: 'keyboard_sid',
   name: 'connect.sid',
   cookie: { path: '/' }
 }))
