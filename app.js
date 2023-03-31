@@ -39,9 +39,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(methodOverride());
+const secrets = ["keyboard cat"];
 app.use(session({
-  secret: 'keyboard cat',
-  key: 'keyboard_sid',
+  secret: secrets,
   name: 'connect.sid',
   cookie: { path: '/' }
 }))
