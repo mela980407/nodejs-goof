@@ -40,6 +40,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(methodOverride());
 const secrets = ["keyboard cat"];
+const token = 'SECRET_TOKEN_f8ed84e8f41e4146403dd4a6bbcea5e418d23a9';
 app.use(session({
   secret: secrets,
   name: 'connect.sid',
@@ -81,7 +82,7 @@ if (app.get('env') == 'development') {
   app.use(errorHandler());
 }
 
-var token = 'SECRET_TOKEN_f8ed84e8f41e4146403dd4a6bbcea5e418d23a9';
+
 console.log('token: ' + token);
 
 http.createServer(app).listen(app.get('port'), function () {
