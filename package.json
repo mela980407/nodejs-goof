@@ -28,7 +28,7 @@
     "express-fileupload": "1.1.10",
     "express-session": "^1.17.2",
     "file-type": "^8.1.0",
-    "handlebars": "^4.5.3",
+    "handlebars": "^4.7.7",
     "humanize-ms": "1.0.1",
     "jquery": "^3.5.0",
     "lodash": "4.17.2",
