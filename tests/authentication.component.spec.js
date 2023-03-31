@@ -42,10 +42,10 @@ describe('Component Tests', () => {
       expect(comp.error).toBeNull();
       expect(comp.success).toBe('OK');
     });
-
+    const contrasena = ["myPassword"];
     test('should notify of error if change password fails', function() {
       // GIVEN
-      comp.password = comp.confirmPassword = 'myPassword';
+      comp.password = comp.confirmPassword = contrasena;
 
       // WHEN
       comp.changePassword();
