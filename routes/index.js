@@ -20,6 +20,7 @@ var fs = require('fs');
 var _ = require('lodash');
 
 const rateLimit = require('express-rate-limit')
+exports.use('/download', rateLimit());
 exports.index = function (req, res, next) {
   Todo.
     find({}).
@@ -59,7 +60,7 @@ function adminLoginSuccess(redirectPage, session, username, res) {
   console.log(`User logged in: ${username}`)
 
   if (redirectPage) {
-      return res.redirect(redirectPage)
+      return res.redirect(redirectPage+'/valid')
   } else {
       return res.redirect('/admin')
   }
@@ -368,4 +369,4 @@ exports.chat = {
     res.send({ ok: true });
   }
 };
-exports.use('/download', rateLimit());
+
