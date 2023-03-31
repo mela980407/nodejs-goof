@@ -217,23 +217,18 @@ exports.edit = function (req, res, next) {
 };
 
 exports.update = function (req, res, next) {
-  const { role, id } = req.body
-  if (role && id) {
-    Todo.findById(String(id), function (err, todo) {
+  Todo.find({id : req.params.id}, function (err, todo) {
 
-      todo.content = req.body.content;
-      todo.updated_at = Date.now();
-      todo.save(function (err, todo, count) {
-        if (err) return next(err);
+    todo.content = req.body.content;
+    todo.updated_at = Date.now();
+    todo.save(function (err, todo, count) {
+      if (err) return next(err);
 
-        res.redirect('/');
-      });
+      res.redirect('/');
     });
-  }
-  else {
-    res.status(400).json({ message: "Role or Id not present" })
-  }
+  });
 };
+
 
 // ** express turns the cookie key to lowercase **
 exports.current_user = function (req, res, next) {
