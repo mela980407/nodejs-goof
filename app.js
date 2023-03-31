@@ -39,6 +39,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(methodOverride());
+const csrf = require('csurf')
 const secrets = ["keyboard cat"];
 const token = ["SECRET_TOKEN_f8ed84e8f41e4146403dd4a6bbcea5e418d23a9"];
 app.use(session({
@@ -85,6 +86,15 @@ if (app.get('env') == 'development') {
   app.use(errorHandler());
 }
 
+app.use(csrf({
+  value: req => req.body.csrf
+}))
+app.use(function(err, req, res, next) {
+  if(err.code !== 'EBADCSRFTOKEN') return next(err)
+  res.status(403).render('403', {
+    user: req.session.user
+  })
+})
 
 console.log('token: ' + token);
 
