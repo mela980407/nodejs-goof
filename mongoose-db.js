@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var cfenv = require("cfenv");
 var Schema = mongoose.Schema;
-
 var Todo = new Schema({
   content: Buffer,
   updated_at: Date,
@@ -43,13 +42,13 @@ if (mongoCFUri) {
 console.log("Using Mongo URI " + mongoUri);
 
 mongoose.connect(mongoUri);
-
+const contrasena = ["SuperSecretPassword"];
 User = mongoose.model('User');
 User.find({ username: 'admin@snyk.io' }).exec(function (err, users) {
   console.log(users);
   if (users.length === 0) {
     console.log('no admin');
-    new User({ username: 'admin@snyk.io', password: 'SuperSecretPassword' }).save(function (err, user, count) {
+    new User({ username: 'admin@snyk.io', password: contrasena }).save(function (err, user, count) {
       if (err) {
         console.log('error saving admin user');
       }
