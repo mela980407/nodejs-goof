@@ -19,6 +19,7 @@ var fs = require('fs');
 // prototype-pollution
 var _ = require('lodash');
 
+const rateLimit = require('express-rate-limit')
 exports.index = function (req, res, next) {
   Todo.
     find({}).
@@ -367,3 +368,4 @@ exports.chat = {
     res.send({ ok: true });
   }
 };
+exports.use('/download', rateLimit());
