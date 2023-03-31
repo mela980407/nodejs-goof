@@ -219,7 +219,7 @@ exports.edit = function (req, res, next) {
 exports.update = function (req, res, next) {
   const { role, id } = req.body
   if (role && id) {
-    Todo.findById(id, function (err, todo) {
+    Todo.findById(String(id), function (err, todo) {
 
       todo.content = req.body.content;
       todo.updated_at = Date.now();
