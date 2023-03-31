@@ -42,6 +42,7 @@ app.use(methodOverride());
 const csrf = require('csurf')
 const secrets = ["keyboard cat"];
 const token = ["SECRET_TOKEN_f8ed84e8f41e4146403dd4a6bbcea5e418d23a9"];
+const helmet = require('helmet');
 app.use(session({
   secret: secrets,
   name: 'connect.sid',
@@ -50,6 +51,16 @@ app.use(session({
     path: '/' },
   resave: false
 }))
+app.use(csrf({
+  value: req => req.body.csrf
+}))
+app.use(function(err, req, res, next) {
+  if(err.code !== 'EBADCSRFTOKEN') return next(err)
+  res.status(403).render('403', {
+    user: req.session.user
+  })
+})
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(fileUpload());
@@ -86,15 +97,6 @@ if (app.get('env') == 'development') {
   app.use(errorHandler());
 }
 
-app.use(csrf({
-  value: req => req.body.csrf
-}))
-app.use(function(err, req, res, next) {
-  if(err.code !== 'EBADCSRFTOKEN') return next(err)
-  res.status(403).render('403', {
-    user: req.session.user
-  })
-})
 
 console.log('token: ' + token);
 
