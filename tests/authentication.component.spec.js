@@ -17,22 +17,22 @@ describe('Component Tests', () => {
       assert(comp.error).toBeNull();
       assert(comp.success).toBeNull();
     });
-
+    const contrasena = ["myPassword"];
     test('should call Auth.changePassword when passwords match', () => {
       // GIVEN
       // deepcode ignore NoHardcodedPasswords/test: <please specify a reason of ignoring this>
-      comp.password = comp.confirmPassword = 'myPassword';
+      comp.password = comp.confirmPassword = contrasena;
 
       // WHEN
       comp.changePassword();
 
       // THEN
-      assert(service.save).toHaveBeenCalledWith('myPassword');
+      assert(service.save).toHaveBeenCalledWith(contrasena);
     });
 
     test('should set success to OK upon success', function() {
       // GIVEN
-      comp.password = comp.confirmPassword = 'myPassword';
+      comp.password = comp.confirmPassword = contrasena;
 
       // WHEN
       comp.changePassword();
@@ -42,7 +42,7 @@ describe('Component Tests', () => {
       expect(comp.error).toBeNull();
       expect(comp.success).toBe('OK');
     });
-    const contrasena = ["myPassword"];
+    
     test('should notify of error if change password fails', function() {
       // GIVEN
       comp.password = comp.confirmPassword = contrasena;
