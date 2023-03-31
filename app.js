@@ -44,7 +44,10 @@ const token = ["SECRET_TOKEN_f8ed84e8f41e4146403dd4a6bbcea5e418d23a9"];
 app.use(session({
   secret: secrets,
   name: 'connect.sid',
-  cookie: { path: '/' }
+  cookie: { 
+    secure: true,
+    path: '/' },
+  resave: false
 }))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
