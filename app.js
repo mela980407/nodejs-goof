@@ -9,7 +9,7 @@ require('./typeorm-db')
 var st = require('st');
 var crypto = require('crypto');
 var express = require('express');
-var http = require('http');
+var https = require('https');
 var path = require('path');
 var ejsEngine = require('ejs-locals');
 var bodyParser = require('body-parser');
@@ -88,6 +88,6 @@ if (app.get('env') == 'development') {
 
 console.log('token: ' + token);
 
-http.createServer(app).listen(app.get('port'), function () {
+https.createServer(app).listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
 });
