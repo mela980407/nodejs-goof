@@ -314,9 +314,10 @@ exports.about_new = function (req, res, next) {
 ///////////////////////////////////////////////////////////////////////////////
 // In order of simplicity we are not using any database. But you can write the
 // same logic using MongoDB.
+const contrasena = ["pwd"]
 const users = [
   // You know password for the user.
-  { name: 'user', password: 'pwd' },
+  { name: 'user', password: contrasena },
   // You don't know password for the admin.
   { name: 'admin', password: Math.random().toString(32), canDelete: true },
 ];
