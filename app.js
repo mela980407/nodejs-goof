@@ -61,8 +61,8 @@ app.use(function(err, req, res, next) {
   })
 })
 app.use(helmet());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(fileUpload());
 
 // Routes
